@@ -83,10 +83,17 @@ else:
         # register or login to database
         app.config['MYSQL_HOST'] = 'tboard.mysql.pythonanywhere-services.com'
         app.config['MYSQL_USER'] = 'tboard'
+        app.config['MYSQL_PORT'] = 3306
         app.config['MYSQL_PASSWORD'] = 'DEVELOPERpw#db'
         app.config['MYSQL_DB'] = 'tboard$mysql_tboard_db'
         app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-        
+        app.config['MYSQL_UNIX_SOCKET'] = None
+        app.config['MYSQL_CONNECT_TIMEOUT'] = 10
+        app.config['MYSQL_READ_DEFAULT_FILE'] = None
+        app.config['MYSQL_USE_UNICODE'] = True
+        app.config['MYSQL_CHARSET'] = "utf8"
+        app.config['MYSQL_SQL_MODE'] = None
+                
         # register function that close database after every response
         # function already registered in flask_mysqldb.py
         app.teardown_appcontext(close_db)
