@@ -81,11 +81,11 @@ else:
 
     def register_with_app(app):
         # register or login to database
-        app.config['MYSQL_HOST'] = ''
-        app.config['MYSQL_USER'] = ''
-        app.config['MYSQL_PASSWORD'] = ''
-        app.config['MYSQL_DB'] = ''
-        app.config['MYSQL_CURSORCLASS'] = ''
+        app.config['MYSQL_HOST'] = 'tboard.mysql.pythonanywhere-services.com'
+        app.config['MYSQL_USER'] = 'tboard'
+        app.config['MYSQL_PASSWORD'] = 'DEVELOPERpw#db'
+        app.config['MYSQL_DB'] = 'tboard$mysql_tboard_db'
+        app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
         
         # register function that close database after every response
         # function already registered in flask_mysqldb.py
