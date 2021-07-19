@@ -12,5 +12,5 @@ create table user(
     month int,
     day int, 
     occupation text,
-    created datetime default current_timespan()
+    created datetime default current_timestamp()
 );
