@@ -1,0 +1,16 @@
+{% extends 'auth/register.html' %}
+{% block title %}Log in{% endblock %}
+{% block form %}
+<div>
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email"/>
+    <div></div>
+</div>
+<div>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password"/>
+    <div></div>
+</div>
+<input type="submit" value="LOG IN">
+{%endblock%}
+{% block other %}Don't have an account? <a href="{{ url_for('auth.register')}}">Register</a>{% endblock %}
