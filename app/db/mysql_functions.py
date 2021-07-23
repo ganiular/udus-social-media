@@ -1,9 +1,10 @@
 from app.db import get_db
 
 def get_user_by_email(email, cur):
-    return cur.execute(
+    cur.execute(
         'select * from user where email=%s limit 1',
-        (email,)).fetchone()
+        (email,))
+    return cur.fetchone()
 
 def register_user(record, cur):
     fields = ''

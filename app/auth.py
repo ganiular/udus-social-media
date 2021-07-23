@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, url_for
+from flask import Blueprint, request, render_template, url_for, session, redirect
 import app.db.db_functions as db
 from app.utils import safe
 
@@ -44,7 +44,31 @@ def register():
     else:
         return render_template('auth/register.html')
 
-@bp.route('/login')
+@bp.route('/login', methods=('POST','GET'))
 def login():
-    return "login page"
+    if request.method == 'POST':
+        email = request.form['email']
+        pwd = request.form['password']
+        if not email:
+            return dict(success=False, message="Email is required")
+        if not safe.is_valid_email(email):
+            return dict(success=False, message="Invalid Email address")
+        if len(pwd) < 6:
+            return dict(success=False, message="Password is too short")
 
+        conn = db.get_db()
+        cur = conn.cursor()
+        user = db.get_user_by_email(email, cur)
+        if user is None or user['password'] != pwd:
+            return dict(success=False, message="Unknown email or wrong password")
+        
+        session.clear()
+        session['client-id'] = user['id']
+        return dict(success=True, redirect=request.args.get('next') or url_for("main.home"), message="Log in successful")
+    else:
+        return render_template('auth/login.html')
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')

@@ -4,7 +4,8 @@ from flask import Flask, render_template
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        DATABASE=os.path.join(app.instance_path, 'sqlite.db')
+        DATABASE=os.path.join(app.instance_path, 'sqlite.db'),
+        SECRET_KEY='dev'
     )
 
     try:
@@ -18,6 +19,8 @@ def create_app():
 
     from . import db
     from . import auth
+    from . import main
     db.register_with_app(app)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(main.bp)
     return app

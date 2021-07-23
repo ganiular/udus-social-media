@@ -7,10 +7,7 @@ create table user(
     first_name text not null,
     last_name text not null,
     middle_name text,
-    phone text,
-    year int,
-    month int,
-    day int, 
+    phone text, 
     occupation text,
     created timespan default current_timespan
 );
