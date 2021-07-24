@@ -18,7 +18,8 @@ function onpopstateCallback(event){
         i.classList.remove('show')
     }
     document.getElementById("latest").classList.add('show')
-    document.title = 'Home'
+    document.title = 'Home';
+    tabblock.scrollTop = 0;
 }
 
 function changeTab(obj, target){
@@ -32,9 +33,14 @@ function changeTab(obj, target){
 
     tabcontainers = document.getElementsByClassName('tabcontainers')
     for(i of tabcontainers){
-        i.classList.remove('show')
+        if(i.classList.contains('show')){
+            i.scrollPosition = tabblock.scrollTop || 0
+            i.classList.remove('show')
+        }
     }
-    document.getElementById(target).classList.add('show')
+    var tabcontainer = document.getElementById(target)
+    tabcontainer.classList.add('show')
+    tabblock.scrollTop = tabcontainer.scrollPosition || 0
 
     if(!pushedState){
         pushedState = true;

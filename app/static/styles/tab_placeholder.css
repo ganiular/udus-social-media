@@ -1,0 +1,91 @@
+* {    
+box-sizing: border-box;
+}
+.post_item{
+    padding: 8px;
+    position: relative;
+}
+.post_item::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+.post_item > div{
+    background-color: #f2f2f2;
+    float: left;
+    margin: 5px 0;
+    width: 100%;
+}
+.post_topic{
+    height: 1.2em;
+}
+div.post_forum{
+    height: 0.8em;
+    width: 80%;
+}
+.post_image{
+    height: 250px;
+}
+.post_buttons{
+    width: 100%;
+    background-color: #fff;
+}
+div.post_like{
+    height: 3em;
+    width: 49%;
+}
+div.post_comment{
+    height: 3em;
+    width: 49%;
+    float: right;
+}
+.chat_item {
+    position: relative;
+    height: 4em;
+    margin: 16px 8px;
+}
+
+.chat_item_image {
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+}
+
+.chat_item_title {
+    height: 1em;
+    margin: 10px 12px;
+    position: absolute;
+    right: 0;
+    left: 4em;
+    background-color: #f2f2f2;
+}
+
+.chat_item_text {
+    height: 1em;
+    left: 4em;
+    right: 20%;
+    margin: 10px 12px;
+    bottom: 0;
+    position: absolute;
+    background-color: #f2f2f2;
+}
+
+.forum_item{
+    margin-bottom: 1em;
+}
+.forum_item::after{
+    clear: right;
+    content: "";
+    display: block;
+}
+.forum_item > div{
+    height: 1.1em;
+    background-color: #f2f2f2;
+    margin: 8px;
+}
+.forum_sub_topic{
+    float: right;
+    width: 90%;
+}

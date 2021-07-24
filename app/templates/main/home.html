@@ -3,40 +3,39 @@
 {% block head %}
 {{super()}}
 <link rel="stylesheet" href="{{url_for('static', filename='styles/nav.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/tab_placeholder.css')}}">
 <script src="{{url_for('static', filename='script/tab.js')}}"></script>
 {% endblock %}
 {% block body %}
 <div id="menu" class="menubox">
-<div style="overflow: auto;">
-<span class="menuclose" onclick="closeMenu()">x</span>
+    <div style="overflow: auto;">
+        <span class="menuclose" onclick="closeMenu()">x</span>
+    </div>
+    <a class="menuitem" href="#profile">Profile</a>
+    <a class="menuitem" href="{{ url_for('auth.logout')}}">Log out</a>
 </div>
-<a class="menuitem" href="#profile">Profile</a>
-<a class="menuitem" href="{{ url_for('auth.logout')}}">Log out</a>
-</div>
-<nav class="tab">
+<nav id="nav" class="tab">
     <a href="latest" id="tab1" class="tablinks{{ ' active' if active=='latest' else ''}}" onclick="changeTab(this, 'latest');return false">Latest</a>
     <a href="chats" id="tab2" class="tablinks{{ ' active' if active=='chats' else ''}}" onclick="changeTab(this, 'chats');return false">Chats</a>
     <a href="forums" id="tab3" class="tablinks{{ ' active' if active=='forums' else ''}}" onclick="changeTab(this, 'forums');return false">Forums</a>
     <div class="menu-icon" onclick="openMenu()">
-        <div></div><div></div><div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 </nav>
-<div class="tabblock">
+<div id="tabblock" class="tabblock">
     <div id="latest" class="tabcontainers{{ ' show' if active=='latest' else ''}}">
-    <h1>Latest</h1>
-    <p>here we go</p>
+        {% include 'components/post_item.html' %}
     </div>
-
     <div id="chats" class="tabcontainers{{ ' show' if active=='chats' else ''}}">
-    <h1>Chats</h1>
-    <p>here we go</p>
+        {% include 'components/chat_item.html' %}
     </div>
-
     <div id="forums" class="tabcontainers{{ ' show' if active=='forums' else ''}}">
-    <h1>Forums</h1>
-    <p>here we go</p>
+        {% include 'components/forum_item.html' %}
     </div>
 </div>
 <script src="{{url_for('static', filename='script/directive.js')}}"></script>
 <script></script>
 {% endblock %}
+
