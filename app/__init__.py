@@ -20,7 +20,9 @@ def create_app():
     from . import db
     from . import auth
     from . import main
+    from . import api
     db.register_with_app(app)
     app.register_blueprint(auth.bp)
     app.register_blueprint(main.bp)
+    app.register_blueprint(api.bp)
     return app

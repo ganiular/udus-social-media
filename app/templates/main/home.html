@@ -4,9 +4,11 @@
 {{super()}}
 <link rel="stylesheet" href="{{url_for('static', filename='styles/nav.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='styles/tab_placeholder.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/forum.css')}}">
 <script src="{{url_for('static', filename='script/tab.js')}}"></script>
 {% endblock %}
 {% block body %}
+
 <div id="menu" class="menubox">
     <div style="overflow: auto;">
         <span class="menuclose" onclick="closeMenu()">x</span>
@@ -15,9 +17,9 @@
     <a class="menuitem" href="{{ url_for('auth.logout')}}">Log out</a>
 </div>
 <nav id="nav" class="tab">
-    <a href="latest" id="tab1" class="tablinks{{ ' active' if active=='latest' else ''}}" onclick="changeTab(this, 'latest');return false">Latest</a>
-    <a href="chats" id="tab2" class="tablinks{{ ' active' if active=='chats' else ''}}" onclick="changeTab(this, 'chats');return false">Chats</a>
-    <a href="forums" id="tab3" class="tablinks{{ ' active' if active=='forums' else ''}}" onclick="changeTab(this, 'forums');return false">Forums</a>
+    <a href="latest" id="tablatest" class="tablinks{{ ' active' if active=='latest' else ''}}" onclick="changeTab(this, 'latest');return false">Latest</a>
+    <a href="chats" id="tabchats" class="tablinks{{ ' active' if active=='chats' else ''}}" onclick="changeTab(this, 'chats');return false">Chats</a>
+    <a href="forums" id="tabforums" class="tablinks{{ ' active' if active=='forums' else ''}}" onclick="changeTab(this, 'forums');return false">Forums</a>
     <div class="menu-icon" onclick="openMenu()">
         <div></div>
         <div></div>
@@ -27,15 +29,23 @@
 <div id="tabblock" class="tabblock">
     <div id="latest" class="tabcontainers{{ ' show' if active=='latest' else ''}}">
         {% include 'components/post_item.html' %}
+        <div class="loader"></div>
     </div>
     <div id="chats" class="tabcontainers{{ ' show' if active=='chats' else ''}}">
         {% include 'components/chat_item.html' %}
+        <div class="loader"></div>
     </div>
     <div id="forums" class="tabcontainers{{ ' show' if active=='forums' else ''}}">
         {% include 'components/forum_item.html' %}
+        <div class="loader"></div>
     </div>
 </div>
+<div id="screen" class="wait">
+    <div id="screen_content">Hello</div>
+    <div class="loader"></div>
+</div>
 <script src="{{url_for('static', filename='script/directive.js')}}"></script>
-<script></script>
+<script src="{{url_for('static', filename='script/home.js')}}"></script>
 {% endblock %}
+
 

@@ -17,4 +17,3 @@ def chats():
 @bp.route('/forums')
 def forums():
     return render_template('main/home.html', active='forums')
-    

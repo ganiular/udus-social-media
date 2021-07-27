@@ -1,0 +1,166 @@
+.pageinput {
+}
+
+.addbtn {
+    border: 2px solid;
+    display: inline-block;
+    width: 54px;
+    height: 54;
+    position: absolute;
+    right: -3;
+    top: -3;
+    border-radius: 50%;
+    text-align: center;
+    font-size: xxx-large;
+    background-color: cadetblue;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.postinput {
+    border: 1px solid #ccc;
+    height: 50px;
+    position: relative;
+    border-radius: 25px;
+    line-height: 50px;
+    padding: 0 25px;
+    color: #555;
+    background-color: burlywood;
+    cursor: text;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.forumname {
+    border-bottom: 1px solid;
+    padding: 0 8px 4px;
+    margin: 16px 8px;
+    font-size: x-large;
+}
+
+.posts {margin-bottom: 2em;}
+
+.header {
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.header h1 {
+    margin: 4px 4px 4px 55px;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.profile {
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 2px 8px 2px 28px;
+    background-color: #ddd;
+    border-radius: 0 1em 1em 0;
+    margin-left: 25px;
+}
+
+.profile img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    border-radius: 50px;
+    float: left;
+    border: 2px solid white;
+}
+
+.media {
+    width: 100%;
+    overflow: hidden;
+}
+
+.chart {
+    border-bottom: 2px solid black;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 8px;
+    padding: 4px 1px 2px;
+    height: 2.2em;
+}
+
+.chart span {
+    display: inline-block;
+    height: 100%;
+    width: 3px;
+    margin: 0 1px 0 1px;
+}
+
+.chart .true {
+    background-color: blue;
+}
+
+.chart .false {
+    background-color: red;
+}
+
+.media img {
+    max-width: 100%;
+}
+
+p.text {
+    margin: 0.5em 0;
+    line-height: 1.2em;
+}
+
+p.text.ellipsize{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: 3.6em;
+}
+p.text.ellipsize.large{
+    -webkit-line-clamp: 12;
+    max-height: 14.4em;
+}
+p.text + span {
+    display: none;
+    float: right;
+    color: #5353ad;
+}
+
+p.text.ellipsize + span{
+    display: inline;
+}
+.buttonblock {
+    clear: right;
+}
+
+.buttonblock button {
+    width: 25%;
+    float: left;
+    height: 42px;
+    overflow: hidden;
+}
+
+.buttonblock::after {
+    content: "";
+    clear: left;
+    display: block;
+}
+
+
+span.date {
+    float: right;
+    color: #444;
+}
+
+span.count {
+    color: #444;
+    /* position: absolute; */
+    bottom: 2;
+    left: 2;
+    display: block;
+}

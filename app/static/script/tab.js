@@ -1,35 +1,33 @@
 var pushedState = false
+var chatsLoaded = false
+    
 
 function onhashchangeCallback(event){
     console.log('HashChanged:', event)
 }
 function onpopstateCallback(event){
-    pushedState = false;
-    console.log('PopState:', event)
-    var tablinks, tabcontainers, i;
-    tablinks = document.getElementsByClassName('tablinks')
-    for(i of tablinks){
-        i.classList.remove('active')
-    }
-    document.getElementById("tab1").classList.add('active')
+    console.log('onPopState:', event)
 
-    tabcontainers = document.getElementsByClassName('tabcontainers')
-    for(i of tabcontainers){
-        i.classList.remove('show')
+    if(event && event.state && event.state.page.startsWith('tab')){
+        document.getElementById('screen').classList.remove('show')
+        loadTab(event.state.page.substring(3))
     }
-    document.getElementById("latest").classList.add('show')
-    document.title = 'Home';
-    tabblock.scrollTop = 0;
+    else if(event && event.state && event.state.page == 'forum'){
+        document.getElementById('screen').classList.add('show')
+    }
+    else{
+        pushedState = false;
+        loadTab('latest')
+    }
 }
 
-function changeTab(obj, target){
+function loadTab(target){
     var tablinks, tabcontainers, i;
-    var title = target[0].toUpperCase() + target.substring(1)
     tablinks = document.getElementsByClassName('tablinks')
     for(i of tablinks){
         i.classList.remove('active')
     }
-    obj.classList.add('active')
+    document.getElementById("tab"+target).classList.add('active')
 
     tabcontainers = document.getElementsByClassName('tabcontainers')
     for(i of tabcontainers){
@@ -40,21 +38,36 @@ function changeTab(obj, target){
     }
     var tabcontainer = document.getElementById(target)
     tabcontainer.classList.add('show')
-    tabblock.scrollTop = tabcontainer.scrollPosition || 0
+    if (location.pathname == '/home'){
+        tabblock.scrollTop = 0
+        document.title = "Home"
+    }else{
+        tabblock.scrollTop = tabcontainer.scrollPosition || 0
+    }
+    return tabcontainer
+}
+
+function changeTab(obj, target){
+    var title = target[0].toUpperCase() + target.substring(1)
+    var tabcontainer = loadTab(target)
 
     if(!pushedState){
         pushedState = true;
         if(location.pathname != '/home'){
-            history.replaceState(null, 'Home', 'home')
+            history.replaceState({page:"home"}, 'Home', 'home')
         }
-        history.pushState(null, title, target)
+        history.pushState({page:"tab"+target}, title, target)
         console.log('Pushed', target)
     }
     else{
-        history.replaceState(null, title, target)
+        history.replaceState({page:"tab"+target}, title, target)
         console.log('Replace', target)
     }
     document.title = title;
+
+    if(target == 'forums'){
+        onForumShow(tabcontainer)
+    }
 }
 
 function openMenu(){
